@@ -6,9 +6,17 @@
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
-    <p>
-      Hello! Open the developer tools, please.<br />
-      Start by editing the files in <code>src/</code> folder.
-    </p>
+  <h2>Numeroarvauspeli</h2>
+  <p id="instructions"></p>
+  <form>
+    <label for="number-input">Arvaa numero</label>
+    <input id="number-input" type="text">
+    <button id="number-button">Arvaa</button>
+  </form>
+  <div id="previous-guesses"></div>
+  <div id="results">
+    <p id="guess-result"></p>
+  </div>
+  <button id="reset-button">Aloita uusi peli</button>
   </body>
 </html>
