@@ -1,19 +1,5 @@
-const coursesEn = [
-  'Hamburger, cream sauce and poiled potates',
-  'Goan style fish curry and whole grain rice',
-  'Vegan Chili sin carne and whole grain rice',
-  'Broccoli puree soup, side salad with two napas',
-  'Lunch baguette with BBQ-turkey filling',
-  'Cheese / Chicken / Vege / Halloum burger and french fries'];
-
-const coursesFi = [
-  'Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa',
-  'Goalaista kalacurrya ja täysjyväriisiä',
-  'vegaani Chili sin carne ja täysjyväriisi',
-  'Parsakeittoa,lisäkesalaatti kahdella napaksella',
-  'Lunch baguette with BBQ-turkey filling',
-  'Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset'];
-
+import LunchMenu from '../sodexo-day-example.json';
+console.log('lunch menu object', LunchMenu);
 const languageButton1 = document.querySelector('#language-button1');
 const sortButton = document.querySelector('#sort-button1');
 const randomButton = document.querySelector('#randomize-button1');
@@ -23,7 +9,17 @@ let languageFi = true;
 let sortedAsc = false;
 menu1.innerHTML = '';
 
-for (const course of coursesFi) {
+const lunchArrayFi = [];
+for(const val in LunchMenu.courses){
+  lunchArrayFi.push(LunchMenu.courses[val].title_fi);
+}
+
+const lunchArrayEn = [];
+for(const val in LunchMenu.courses){
+  lunchArrayEn.push(LunchMenu.courses[val].title_en);
+}
+
+for (const course of lunchArrayFi) {
   menu1.innerHTML += `<li>${course}</li>`;
 }
 
@@ -32,12 +28,12 @@ languageButton1.addEventListener('click', (evt) => {
   randomMeal.innerHTML = '';
   menu1.innerHTML = '';
   if (languageFi) {
-    for (const course of coursesEn) {
+    for (const course of lunchArrayEn) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
     languageFi = false;
   } else {
-    for (const course of coursesFi) {
+    for (const course of lunchArrayFi) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
     languageFi = true;
@@ -59,12 +55,12 @@ sortButton.addEventListener('click', (evt) => {
   randomMeal.innerHTML = '';
   if (languageFi) {
     menu1.innerHTML = '';
-    for (const course of sortMenu(coursesFi, sortedAsc)) {
+    for (const course of sortMenu(lunchArrayFi, sortedAsc)) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
   } else {
     menu1.innerHTML = '';
-    for (const course of sortMenu(coursesEn, sortedAsc)) {
+    for (const course of sortMenu(lunchArrayEn, sortedAsc)) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
   }
@@ -72,11 +68,11 @@ sortButton.addEventListener('click', (evt) => {
 
 function randomizeMeal() {
   if(languageFi){
-    const random = Math.floor(Math.random() * coursesFi.length);
-    randomMeal.innerHTML = `Kokeile tätä: ${coursesFi[random]}`;
+    const random = Math.floor(Math.random() * lunchArrayFi.length);
+    randomMeal.innerHTML = `Kokeile tätä: ${lunchArrayFi[random]}`;
   } else {
-    const random = Math.floor(Math.random() * coursesEn.length);
-    randomMeal.innerHTML = `Try this: ${coursesEn[random]}`;
+    const random = Math.floor(Math.random() * lunchArrayEn.length);
+    randomMeal.innerHTML = `Try this: ${lunchArrayEn[random]}`;
   }
 }
 
