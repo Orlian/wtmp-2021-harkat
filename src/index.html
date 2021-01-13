@@ -3,21 +3,56 @@
   <head>
     <meta charset="utf-8"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
-  <h2>Numeroarvauspeli</h2>
-  <p id="instructions"></p>
-  <form>
-    <label for="number-input">Arvaa numero</label>
-    <input id="number-input" type="text">
-    <button id="number-button">Arvaa</button>
-  </form>
-  <div id="previous-guesses"></div>
-  <div id="results">
-    <p id="guess-result"></p>
-    <p id="statistics"></p>
+  <nav>
+    <div class="nav-links">
+      <a href="#">Etusivu</a>
+      <a href="#">Ruokalistat</a>
+      <a href="#">Ravintolat</a>
+      <a href="#">Yhteystiedot</a>
+    </div>
+    <div class="nav-search">
+      <form class="search-form">
+        <!-- Suurennuslasi ikoni -->
+        <input class="search-input" placeholder="Hae ravintolan nimellä">
+      </form>
+    </div>
+  </nav>
+  <div class="banner">
+    <div class="banner-text"><p id="slogan">Lounari.</p>
+      <p>Missä tänään syötäisiin</p></div>
+    <div class="banner-image">
+      <div id="triangle"></div>
+    </div>
   </div>
-  <button id="reset-button">Aloita uusi peli</button>
+  <div class="description-wrapper">
+    <p class="description">Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä.<br>Palvelu etsii lähelläsi olevat lounaspaikat, sekä
+      näyttää niiden päivittäisen lounaslistan. Viikot-<br>taiset lounaslistat ovat myös käytettävissäsi. Pääset
+      niihin klikkaamalla ravintolan logoa alla.</p>
+  </div>
+  <div class="grid">
+    <div class="grid-item">
+      <img class="grid-img" src="#" alt="restaurant logo">
+      <h4 class="grid-title"></h4>
+      <div class="grid-coordinate"></div>
+      <ul id="grid-menu1"></ul>
+      <button id="language-button1">Fi/En</button>
+      <button id="sort-button1">asc/desc</button>
+      <button id="randomize-button1">Arvo ateria</button>
+      <p id="random-meal1"></p>
+    </div>
+    <div class="grid-item">
+      <img class="grid-img" src="#" alt="restaurant logo">
+      <h4 class="grid-title"></h4>
+      <div class="grid-coordinate"></div>
+      <ul id="grid-menu2"></ul>
+      <button class="language-button">Fi/En</button>
+      <button class="sort-button">asc/desc</button>
+      <button class="randomize-button">Arvo ateria</button>
+    </div>
+  </div>
   </body>
 </html>

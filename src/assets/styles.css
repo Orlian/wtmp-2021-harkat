@@ -1,15 +1,111 @@
-body {
-  margin: 10%;
+*{
+  box-sizing: border-box;
+  margin: 0;
 }
 
-#results p {
-  display: none;
+nav {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5em;
 }
 
-#reset-button {
-  margin-top: 3em;
+.nav-links {
+  display: flex;
+  width: 70vw;
+  justify-content: start;
 }
 
-button {
+.nav-links a {
+  margin-left: 2em;
+  margin-right: 2em;
+  text-decoration: none;
+  color: darkred;
+}
+
+.nav-links a:hover {
+  color: #3b0000;
+}
+
+.nav-search {
+  display: flex;
+  width: 30vw;
+  justify-content: end;
+}
+
+.nav-search input {
+  padding-right: 10em;
+  color: darkred;
+  border: darkred 1px solid;
   border-radius: 5px;
+  width: 75%;
+}
+
+.banner {
+  display: flex;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  width: 100vw;
+  height: 10em;
+}
+
+.banner-text {
+  display: flex;
+  color: white;
+  background-color: #49de49;
+  shape-outside: polygon(0 0, 100% 0, 110% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 110% 100%, 0 100%);
+  z-index: 2;
+  overflow: visible;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 10em;
+}
+
+.banner-text #slogan{
+  font-size: 2em;
+}
+
+.banner-image {
+  background-image: url("./img/black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
+  background-color: pink;
+  background-position: center;
+  width: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 10em;
+}
+
+.description-wrapper {
+  width: 100vw;
+  height: auto;
+  text-align: center;
+}
+
+.description {
+  margin: auto;
+  line-height: 1.4em;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3em 0;
+}
+
+.grid-item {
+  width: 30%;
+  height: auto;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+#triangle {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-bottom: 10em solid #49de49;
+  border-right: 5em solid transparent;
 }
