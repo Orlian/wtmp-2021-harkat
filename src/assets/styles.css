@@ -9,3 +9,7 @@ body {
 #reset-button {
   margin-top: 3em;
 }
+
+button {
+  border-radius: 5px;
+}
