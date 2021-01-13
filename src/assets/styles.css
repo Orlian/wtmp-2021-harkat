@@ -5,3 +5,7 @@ body {
 #results p {
   display: none;
 }
+
+#reset-button {
+  margin-top: 3em;
+}
