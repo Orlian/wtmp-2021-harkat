@@ -1,82 +1,108 @@
-import LunchMenu from '../sodexo-day-example.json';
-console.log('lunch menu object', LunchMenu);
+import SodexoTools from './assets/modules/sodexo-module';
+import FazerTools from './assets/modules/fazer-module';
+
 const languageButton1 = document.querySelector('#language-button1');
-const sortButton = document.querySelector('#sort-button1');
-const randomButton = document.querySelector('#randomize-button1');
+const sortButton1 = document.querySelector('#sort-button1');
+const randomButton1 = document.querySelector('#randomize-button1');
 const menu1 = document.querySelector('#grid-menu1');
-const randomMeal = document.querySelector('#random-meal1');
-let languageFi = true;
-let sortedAsc = false;
+const randomMeal1 = document.querySelector('#random-meal1');
+const languageButton2 = document.querySelector('#language-button2');
+const menu2 = document.querySelector('#grid-menu2');
+const sortButton2 = document.querySelector('#sort-button2');
+const randomMeal2 = document.querySelector('#random-meal2');
+const randomButton2 = document.querySelector('#randomize-button2');
+let languageFi1 = true;
+let languageFi2 = true;
+let sortedAsc1 = SodexoTools.sortedAsc;
+let sortedAsc2 = false;
 menu1.innerHTML = '';
+menu2.innerHTML = '';
 
-const lunchArrayFi = [];
-for(const val in LunchMenu.courses){
-  lunchArrayFi.push(LunchMenu.courses[val].title_fi);
-}
-
-const lunchArrayEn = [];
-for(const val in LunchMenu.courses){
-  lunchArrayEn.push(LunchMenu.courses[val].title_en);
-}
-
-for (const course of lunchArrayFi) {
+for (const course of SodexoTools.lunchArrayFi) {
   menu1.innerHTML += `<li>${course}</li>`;
 }
 
+for (const course of FazerTools.printMenu(languageFi2)) {
+  menu2.innerHTML += `<li>${course}</li>`;
+}
+languageFi2 = false;
+
 languageButton1.addEventListener('click', (evt) => {
   evt.preventDefault();
-  randomMeal.innerHTML = '';
+  randomMeal1.innerHTML = '';
   menu1.innerHTML = '';
-  if (languageFi) {
-    for (const course of lunchArrayEn) {
+  if (languageFi1) {
+    for (const course of SodexoTools.lunchArrayEn) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
-    languageFi = false;
+    languageFi1 = false;
   } else {
-    for (const course of lunchArrayFi) {
+    for (const course of SodexoTools.lunchArrayFi) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
-    languageFi = true;
+    languageFi1 = true;
   }
 });
 
-function sortMenu(array, order) {
-  if (!order) {
-    sortedAsc = true;
-    return array.sort();
-  } else {
-    sortedAsc = false;
-    return array.sort().reverse();
-  }
-}
-
-sortButton.addEventListener('click', (evt) => {
+languageButton2.addEventListener('click', (evt) => {
   evt.preventDefault();
-  randomMeal.innerHTML = '';
-  if (languageFi) {
+  randomMeal2.innerHTML = '';
+  menu2.innerHTML = '';
+  for (const course of FazerTools.printMenu(languageFi2)) {
+    menu2.innerHTML += `<li>${course}</li>`;
+  }
+  languageFi2 = !languageFi2;
+});
+
+sortButton1.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  randomMeal1.innerHTML = '';
+  if (languageFi1) {
     menu1.innerHTML = '';
-    for (const course of sortMenu(lunchArrayFi, sortedAsc)) {
+    for (const course of SodexoTools.sortMenu(SodexoTools.lunchArrayFi,
+      sortedAsc1)) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
+    sortedAsc1 = !sortedAsc1;
   } else {
     menu1.innerHTML = '';
-    for (const course of sortMenu(lunchArrayEn, sortedAsc)) {
+    for (const course of SodexoTools.sortMenu(SodexoTools.lunchArrayEn,
+      sortedAsc1)) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
+    sortedAsc1 = !sortedAsc1;
   }
 });
 
-function randomizeMeal() {
-  if(languageFi){
-    const random = Math.floor(Math.random() * lunchArrayFi.length);
-    randomMeal.innerHTML = `Kokeile tätä: ${lunchArrayFi[random]}`;
-  } else {
-    const random = Math.floor(Math.random() * lunchArrayEn.length);
-    randomMeal.innerHTML = `Try this: ${lunchArrayEn[random]}`;
-  }
-}
-
-randomButton.addEventListener('click', (evt) => {
+sortButton2.addEventListener('click', (evt) => {
   evt.preventDefault();
-  randomizeMeal();
+  if (!sortedAsc2) {
+    menu2.innerHTML = '';
+    for (const course of FazerTools.printMenu(!languageFi2).sort()) {
+      menu2.innerHTML += `<li>${course}</li>`;
+    }
+    sortedAsc2 = !sortedAsc2;
+  } else {
+    menu2.innerHTML = '';
+    for (const course of FazerTools.printMenu(!languageFi2).sort().reverse()) {
+      menu2.innerHTML += `<li>${course}</li>`;
+    }
+    sortedAsc2 = !sortedAsc2;
+  }
+});
+
+randomButton1.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  if (languageFi1) {
+    randomMeal1.innerHTML = `Kokeile tätä: ${SodexoTools.lunchArrayFi[SodexoTools.randomizeMeal(
+      languageFi1)]}`;
+  } else {
+    randomMeal1.innerHTML = `Kokeile tätä: ${SodexoTools.lunchArrayEn[SodexoTools.randomizeMeal(
+      languageFi1)]}`;
+  }
+});
+
+randomButton2.addEventListener('click', (evt) => {
+  evt.preventDefault();
+
 });
