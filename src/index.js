@@ -95,3 +95,13 @@ numberButton.addEventListener('click', (evt) => {
 });
 
 resetButton.addEventListener('click', resetGame);
+
+//Week2 task1
+//Paras strategia on mennä aina puoleen väliin minimin (tai edellisen arvauksen) ja maksimiluvun (tai minimiluvun) väliltä
+// riippuen oliko arvaus liian suuri vai pieni.
+
+// Einstein-algoritmi //
+
+const playGame = (array, jump, result) => {
+  const maxIndex = array.length - 1;
+};
