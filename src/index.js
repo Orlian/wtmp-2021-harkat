@@ -1,5 +1,6 @@
 import LunchMenu from '../sodexo-day-example.json';
 import FazerMenu from '../fazer.json';
+
 console.log('FazerMenu objekti', FazerMenu);
 const languageButton1 = document.querySelector('#language-button1');
 const sortButton = document.querySelector('#sort-button1');
@@ -13,12 +14,12 @@ let sortedAsc = false;
 menu1.innerHTML = '';
 
 const lunchArrayFi = [];
-for(const val in LunchMenu.courses){
+for (const val in LunchMenu.courses) {
   lunchArrayFi.push(LunchMenu.courses[val].title_fi);
 }
 
 const lunchArrayEn = [];
-for(const val in LunchMenu.courses){
+for (const val in LunchMenu.courses) {
   lunchArrayEn.push(LunchMenu.courses[val].title_en);
 }
 
@@ -27,7 +28,7 @@ const dishList = [
   {name: 'Mushroom and bean casserole', price: 5.50},
   {name: 'Chili-flavoured wheat', price: 3.00},
   {name: 'Vegetarian soup', price: 4.80},
-  {name: 'Pureed root vegetable soup with smoked cheese', price: 8.00}
+  {name: 'Pureed root vegetable soup with smoked cheese', price: 8.00},
 ];
 
 for (const course of lunchArrayFi) {
@@ -78,7 +79,7 @@ sortButton.addEventListener('click', (evt) => {
 });
 
 function randomizeMeal() {
-  if(languageFi){
+  if (languageFi) {
     const random = Math.floor(Math.random() * lunchArrayFi.length);
     randomMeal.innerHTML = `Kokeile tätä: ${lunchArrayFi[random]}`;
   } else {
@@ -93,7 +94,7 @@ randomButton.addEventListener('click', (evt) => {
 });
 
 const validateMeal = (string) => {
-  console.log(/^[A-ZÖÄÅ]{1}[a-zöäå0-9/\- ,()]{4,64}$/.test(string));
+  console.log(/^[A-ZÖÄÅ]{1}[a-zöäåA-ZÄÖÅ0-9/\- ,()]{3,63}$/.test(string));
 };
 
 regexForm.addEventListener('submit', (evt) => {
@@ -127,15 +128,19 @@ filterButton.addEventListener('click', (evt) => {
 });
 
 const priceHike = () => {
-  const raisedList = dishList.map((dish) => (dish.price * 1.15).toFixed(2));
-  console.log('Nostetut hinnat:', raisedList);
+  return dishList.map(dish => {
+    return {
+      name: dish.name,
+      price: (dish.price * 1.15).toFixed(2),
+    };
+  });
 };
 
 const priceHikeButton = document.querySelector('#raise-price');
 
 priceHikeButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  priceHike();
+  console.log(priceHike());
 });
 
 const sumPrices = () => {
@@ -155,15 +160,19 @@ console.log('modayDishes', mondayDishes);
 const veganButton = document.querySelector('#vegan-button');
 console.log('object values', mondayDishes[0].Meals);
 
-const sortVegan = () => {
-  for(const dish of mondayDishes){
-    for(const meal of dish.Meals) {
-
+const sortVegan = (menuData) => {
+  let veganMeals = [];
+  for(const setMenu of menuData.LunchMenus[0].SetMenus){
+    for(const meal of setMenu.Meals) {
+      if(meal.Diets.includes('Veg')){
+        veganMeals.push(meal.Name);
+      }
     }
   }
+  return veganMeals;
 };
 
 veganButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  sortVegan();
+  console.log('Testaa vegaani sorttausta: ', sortVegan(FazerMenu));
 });
