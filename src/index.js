@@ -104,5 +104,10 @@ randomButton1.addEventListener('click', (evt) => {
 
 randomButton2.addEventListener('click', (evt) => {
   evt.preventDefault();
-
+  randomMeal2.innerHTML = '';
+  let dishList = [];
+  for(const dish of menu2.childNodes) {
+    dishList.push(dish.innerHTML);
+  }
+  randomMeal2.innerHTML = 'Kokeile tätä:' + FazerTools.randomizeDish(dishList);
 });

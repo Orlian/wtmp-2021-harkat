@@ -14,7 +14,7 @@ const daymenuFi = MenuFi.LunchMenus[getWeekday()].SetMenus;
 const daymenuEn = MenuEn.LunchMenus[getWeekday()].SetMenus;
 let dailyMeals = [];
 let mealString;
-const buildMenu = (languageFi) => {
+const printMenu = (languageFi) => {
   dailyMeals = [];
   if (languageFi) {
     for (const setMenu of daymenuFi) {
@@ -43,12 +43,10 @@ const buildMenu = (languageFi) => {
   }
   return dailyMeals;
 };
-const printMenu = (languageFi) => {
-  return buildMenu(languageFi);
-};
 
-const randomizeDish = (languageFi) => {
-
+const randomizeDish = (readyMenu) => {
+  const randomIndex = Math.floor(Math.random() * readyMenu.length);
+  return readyMenu[randomIndex];
 };
 
 const FazerTools = {printMenu, randomizeDish};
