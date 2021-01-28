@@ -3,6 +3,7 @@ console.log('Hello console!');
 const tickleBox = document.querySelector('#touch-box');
 const idleMessage = document.querySelector('#idle-text');
 const idleMessage2 = document.querySelector('#idle-text2');
+const pageCoords = document.querySelector('.coords');
 const cheatCode = 'unicorn';
 let input = '';
 let idleTime;
@@ -23,18 +24,16 @@ window.addEventListener('keypress', (evt) => {
 
 const mouseCoordinates = (evt) => {
   evt.preventDefault();
-  console.log(`Mouse is at x:${evt.pageX}, y:${evt.pageY}`);
+  pageCoords.textContent = 'Mouse is at X: ' + evt.pageX + ' Y: '+ evt.pageY;
 };
 
 window.addEventListener('dblclick', mouseCoordinates);
 
-tickleBox.addEventListener('mouseover', (evt) => {
-  evt.preventDefault();
+tickleBox.addEventListener('touchstart', (evt) => {
   tickleBox.innerHTML = 'Tee hee hee!';
 });
 
-tickleBox.addEventListener('mouseleave', (evt) => {
-  evt.preventDefault();
+tickleBox.addEventListener('touchend', (evt) => {
   tickleBox.innerHTML = 'Tickle me!';
 });
 
