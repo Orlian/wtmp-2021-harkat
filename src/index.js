@@ -40,6 +40,7 @@ languageButton1.addEventListener('click', (evt) => {
     for (const course of SodexoTools.lunchArrayFi) {
       menu1.innerHTML += `<li>${course}</li>`;
     }
+    console.log(SodexoTools.lunchArrayFi);
     languageFi1 = true;
   }
 });
@@ -51,6 +52,7 @@ languageButton2.addEventListener('click', (evt) => {
   for (const course of FazerTools.printMenu(languageFi2)) {
     menu2.innerHTML += `<li>${course}</li>`;
   }
+  console.log(FazerTools.printMenu(languageFi2));
   languageFi2 = !languageFi2;
 });
 
