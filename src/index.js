@@ -113,3 +113,5 @@ randomButton2.addEventListener('click', (evt) => {
   }
   randomMeal2.innerHTML = 'Kokeile tätä:' + FazerTools.randomizeDish(dishList);
 });
+
+console.log('lål');
