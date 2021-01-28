@@ -12,7 +12,7 @@ window.addEventListener('keypress', (evt) => {
   input += evt.key;
   idleMessage2.innerHTML = '';
   clearTimeout(idleTime);
-  setIdleTimer();
+  setIdleTimer(5);
   if(input.length > cheatCode.length) {
     input = input.substr(1);
   }
@@ -41,31 +41,31 @@ setTimeout(() => {
   idleMessage.innerHTML = 'Tick tock';
 }, 15000);
 
-const setIdleTimer = () => {
+const setIdleTimer = (seconds) => {
   idleTime = setTimeout(() => {
-    idleMessage2.innerHTML = 'You have been idle for 15 seconds';
-  }, 15000);
+    idleMessage2.innerHTML = `You have been idle for ${seconds} seconds`;
+  }, seconds * 1000);
 };
 
-setIdleTimer();
+setIdleTimer(5);
 
 window.addEventListener('mousemove', (evt) => {
   evt.preventDefault();
   idleMessage2.innerHTML = '';
   clearTimeout(idleTime);
-  setIdleTimer();
+  setIdleTimer(5);
 });
 
 window.addEventListener('click', (evt) => {
   evt.preventDefault();
   idleMessage2.innerHTML = '';
   clearTimeout(idleTime);
-  setIdleTimer();
+  setIdleTimer(5);
 });
 
 window.addEventListener('scroll', (evt) => {
   evt.preventDefault();
   idleMessage2.innerHTML = '';
   clearTimeout(idleTime);
-  setIdleTimer();
+  setIdleTimer(5);
 });
