@@ -1,0 +1,153 @@
+:root {
+  --greenAccent: #43E04F;
+  --greenHover: #1d6422;
+  --redAccent: #AC1149;
+  --redHover: #3b0000;
+}
+
+@font-face {
+  font-family: Lato-Black;
+  src: url("./fonts/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: Lato-Bold;
+  src: url("./fonts/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: Lato-Regular;
+  src: url("./fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab-ExtraBold;
+  src: url("./fonts/RobotoSlab-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab-Regular;
+  src: url("./fonts/RobotoSlab-Regular.ttf");
+}
+
+.nav-links {
+  display: none;
+}
+
+.nav-search {
+  display: none;
+}
+
+.nav-hamburger {
+  display: none;
+  position: absolute;
+  top: 2.4em;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--greenAccent);
+  z-index: 2;
+  font-family: Lato-Bold, sans-serif;
+}
+
+.nav-hamburger a {
+  margin: 0.5em 0;
+  text-decoration: none;
+  color: var(--redAccent);
+}
+
+.nav-hamburger a:hover {
+  color: var(--redHover);
+}
+
+.nav-hamburger .nav-search {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1.2em;
+  justify-content: center;
+}
+
+.nav-hamburger .search-form {
+  width: 40%;
+}
+
+.nav-hamburger .search-input {
+  text-align: center;
+}
+
+#nav-burger-button {
+  display: block;
+  outline: none;
+  border: none;
+  background: none;
+  height: 95%;
+  margin-left: 1em;
+}
+
+.feather-menu {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--redAccent);
+}
+
+.feather-menu:hover {
+  color: var(--redHover);
+}
+
+.banner {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 14em;
+  justify-content: center;
+}
+
+.banner-text {
+  display: flex;
+  position: absolute;
+  align-self: center;
+  justify-content: center;
+  width: 80%;
+  border-radius: 20%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 14em;
+}
+
+#triangle {
+  display: none;
+}
+
+.description {
+  width: 90vw;
+  font-size: 16px;
+}
+
+.grid {
+  justify-content: center;
+}
+
+.grid-item {
+  width: 94%;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+
+.grid-img {
+  margin: 0;
+}
+
+.add-restaurant {
+  width: 94%;
+  margin: 0;
+}
+
+@keyframes toggleMenu {
+  from {}
+  to {}
+}

@@ -2,42 +2,100 @@
   box-sizing: border-box;
   margin: 0;
 }
+:root {
+  --greenAccent: #43E04F;
+  --greenHover: #1d6422;
+  --redAccent: #ac1149;
+  --redHover: #3b0000;
+}
+
+@font-face {
+  font-family: Lato-Black;
+  src: url("./fonts/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: Lato-Bold;
+  src: url("./fonts/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: Lato-Regular;
+  src: url("./fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab-ExtraBold;
+  src: url("./fonts/RobotoSlab-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab-Regular;
+  src: url("./fonts/RobotoSlab-Regular.ttf");
+}
 
 nav {
   display: flex;
   flex-direction: row;
   margin-top: 0.5em;
+  font-family: Lato-Bold, sans-serif;
 }
 
 .nav-links {
   display: flex;
   width: 70vw;
   justify-content: start;
+  align-items: center;
 }
 
 .nav-links a {
   margin-left: 2em;
   margin-right: 2em;
   text-decoration: none;
-  color: darkred;
+  color: var(--redAccent);
 }
 
 .nav-links a:hover {
-  color: #3b0000;
+  color: var(--redHover);
 }
 
 .nav-search {
   display: flex;
   width: 30vw;
+  padding-right: 5em;
   justify-content: end;
 }
 
+.search-form {
+  position: relative;
+  width: 100%;
+}
+
 .nav-search input {
-  padding-right: 10em;
-  color: darkred;
-  border: darkred 1px solid;
+  border: var(--redAccent) 2px solid;
   border-radius: 5px;
-  width: 75%;
+  padding-left: 2em;
+  width: 100%;
+  height: 2em;
+}
+
+.nav-hamburger {
+  display: none;
+}
+
+.feather-search {
+  position: absolute;
+  color: var(--redAccent);
+  top: 15%;
+  height: 1.1em;
+}
+
+#nav-burger-button {
+  display: none;
+}
+
+.feather-menu {
+  display: none;
 }
 
 .banner {
@@ -46,15 +104,16 @@ nav {
   margin-bottom: 1em;
   width: 100vw;
   height: 10em;
+  font-family: RobotoSlab-Regular, sans-serif;
 }
 
 .banner-text {
   display: flex;
   color: white;
-  background-color: #49de49;
+  background-color: var(--greenAccent);
   shape-outside: polygon(0 0, 100% 0, 110% 100%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 110% 100%, 0 100%);
-  z-index: 2;
+  z-index: 1;
   overflow: visible;
   flex-direction: column;
   justify-content: center;
@@ -65,6 +124,7 @@ nav {
 
 .banner-text #slogan{
   font-size: 2em;
+  font-family: RobotoSlab-Extrabold, sans-serif;
 }
 
 .banner-image {
@@ -85,27 +145,40 @@ nav {
 
 .description {
   margin: auto;
+  width: 36em;
+  font-size: 20px;
   line-height: 1.4em;
+  font-family: Lato-Regular, sans-serif;
 }
 
 .grid {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   margin: 3em 0;
 }
 
 .grid-item {
-  width: 30%;
+  width: 35%;
   height: auto;
   border: black 1px solid;
   border-radius: 5px;
   padding: 1em;
 }
 
+ul {
+  font-family: Lato-Regular, sans-serif;
+  width: 100%;
+  padding-left: 1em;
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
 #triangle {
   position: relative;
   width: 0;
   height: 0;
-  border-bottom: 10em solid #49de49;
+  border-bottom: 10em solid var(--greenAccent);
   border-right: 5em solid transparent;
 }
+
