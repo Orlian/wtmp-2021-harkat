@@ -24,10 +24,18 @@ for (const course of SodexoData.lunchArrayFi) {
   menu1.innerHTML += `<li>${course}</li>`;
 }
 
-for (const course of FazerData.printMenu(languageFi2)) {
-  menu2.innerHTML += `<li>${course}</li>`;
+if (FazerData.printMenu(languageFi2) === undefined ||
+  FazerData.printMenu(languageFi2).length === 0) {
+  menu2.innerHTML = `<li>Hyvää viikonloppua!</li>`;
+  languageButton2.disabled = true;
+  sortButton2.disabled = true;
+  randomButton2.disabled = true;
+} else {
+  for (const course of FazerData.printMenu(languageFi2)) {
+    menu2.innerHTML += `<li>${course}</li>`;
+  }
+  languageFi2 = false;
 }
-languageFi2 = false;
 
 languageButton1.addEventListener('click', (evt) => {
   evt.preventDefault();
@@ -110,25 +118,27 @@ randomButton2.addEventListener('click', (evt) => {
   evt.preventDefault();
   randomMeal2.innerHTML = '';
   let dishList = [];
-  for(const dish of menu2.childNodes) {
+  for (const dish of menu2.childNodes) {
     dishList.push(dish.innerHTML);
   }
   randomMeal2.innerHTML = 'Kokeile tätä:' + FazerData.randomizeDish(dishList);
 });
 
-if('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('.service-worker.js').then(registration => {
-      console.log('SW registered:', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed:', registrationError);
-    });
+    navigator.serviceWorker.register('.service-worker.js').
+      then(registration => {
+        console.log('SW registered:', registration);
+      }).
+      catch(registrationError => {
+        console.log('SW registration failed:', registrationError);
+      });
   });
 }
 
-navMenuButton.addEventListener('click' , (evt) => {
+navMenuButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  if(navBurgerMenu.style.display !== 'flex') {
+  if (navBurgerMenu.style.display !== 'flex') {
     navBurgerMenu.style.display = 'flex';
   } else {
     navBurgerMenu.style.display = 'none';
