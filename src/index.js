@@ -1,5 +1,5 @@
-import SodexoData from './assets/modules/sodexo-module';
-import FazerData from './assets/modules/fazer-module';
+import ApiData from './assets/modules/api';
+'use strict';
 
 const languageButton1 = document.querySelector('#language-button1');
 const sortButton1 = document.querySelector('#sort-button1');
@@ -15,74 +15,55 @@ const navMenuButton = document.querySelector('#nav-burger-button');
 const navBurgerMenu = document.querySelector('.nav-hamburger');
 let languageFi1 = true;
 let languageFi2 = true;
-let sortedAsc1 = SodexoData.sortedAsc;
+let sortedAsc1 = false;
 let sortedAsc2 = false;
 menu1.innerHTML = '';
 menu2.innerHTML = '';
 
-for (const course of SodexoData.lunchArrayFi) {
-  menu1.innerHTML += `<li>${course}</li>`;
-}
-
-if (FazerData.printMenu(languageFi2) === undefined ||
-  FazerData.printMenu(languageFi2).length === 0) {
-  menu2.innerHTML = `<li>Hyvää viikonloppua!</li>`;
-  languageButton2.disabled = true;
-  sortButton2.disabled = true;
-  randomButton2.disabled = true;
-} else {
-  for (const course of FazerData.printMenu(languageFi2)) {
-    menu2.innerHTML += `<li>${course}</li>`;
+const reloadSodexoMenu = async (menu) => {
+  for(let sodexoLi of menu) {
+    menu1.innerHTML += `<li>${sodexoLi}</li>`;
   }
-  languageFi2 = false;
-}
+};
 
-languageButton1.addEventListener('click', (evt) => {
+const reloadFazerMenu = async (menu) => {
+  for(let fazerLi of menu) {
+    menu2.innerHTML += `<li>${fazerLi}</li>`;
+  }
+};
+
+const initializeMenus = async () => {
+  await reloadFazerMenu(await ApiData.fazerMenuLoad(languageFi2));
+  await reloadSodexoMenu(await ApiData.sodexoMenuLoad(languageFi1));
+};
+
+initializeMenus();
+
+languageButton1.addEventListener('click', async (evt) => {
   evt.preventDefault();
   randomMeal1.innerHTML = '';
   menu1.innerHTML = '';
-  if (languageFi1) {
-    for (const course of SodexoData.lunchArrayEn) {
-      menu1.innerHTML += `<li>${course}</li>`;
-    }
-    languageFi1 = false;
-  } else {
-    for (const course of SodexoData.lunchArrayFi) {
-      menu1.innerHTML += `<li>${course}</li>`;
-    }
-    console.log(SodexoData.lunchArrayFi);
-    languageFi1 = true;
-  }
+  languageFi1 = !languageFi1;
+  await reloadSodexoMenu(await ApiData.sodexoMenuLoad(languageFi1));
 });
 
-languageButton2.addEventListener('click', (evt) => {
+languageButton2.addEventListener('click', async (evt) => {
   evt.preventDefault();
   randomMeal2.innerHTML = '';
   menu2.innerHTML = '';
-  for (const course of FazerData.printMenu(languageFi2)) {
-    menu2.innerHTML += `<li>${course}</li>`;
-  }
-  console.log(FazerData.printMenu(languageFi2));
   languageFi2 = !languageFi2;
+  await reloadFazerMenu(await ApiData.fazerMenuLoad(languageFi2));
 });
 
-sortButton1.addEventListener('click', (evt) => {
+sortButton1.addEventListener('click', async (evt) => {
   evt.preventDefault();
   randomMeal1.innerHTML = '';
-  if (languageFi1) {
-    menu1.innerHTML = '';
-    for (const course of SodexoData.sortMenu(SodexoData.lunchArrayFi,
-      sortedAsc1)) {
-      menu1.innerHTML += `<li>${course}</li>`;
-    }
+  if(!sortedAsc1){
     sortedAsc1 = !sortedAsc1;
+    await reloadSodexoMenu(await ApiData.sodexoMenuLoad(languageFi1).sort());
   } else {
-    menu1.innerHTML = '';
-    for (const course of SodexoData.sortMenu(SodexoData.lunchArrayEn,
-      sortedAsc1)) {
-      menu1.innerHTML += `<li>${course}</li>`;
-    }
     sortedAsc1 = !sortedAsc1;
+    await reloadSodexoMenu(await ApiData.sodexoMenuLoad(languageFi1).sort().reverse());
   }
 });
 
