@@ -14,6 +14,19 @@ if (month < 10) {
 
 currentDate = `${year}-${month}-${date}`;
 
+const fetchJson = async (url, useProxy = false) => {
+  let response;
+  try {
+    response = await fetch(`${useProxy ? proxyUrl : ''}${url}`);
+    if(!response.ok) {
+      throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
+    }
+  } catch (e) {
+    console.log('fetchJson error:', e.message);
+  }
+  return await response.json();
+};
+
 const fetchSodexoData = async () => {
   let response;
   try {
@@ -25,19 +38,20 @@ const fetchSodexoData = async () => {
   return await response.json();
 };
 
-const sodexoMenuLoad = async (lang) => {
+const sodexoMenuLoad = async () => {
   let response;
-  let menu = [];
+  let menu = {};
+  let menuFi = [];
+  let menuEn = [];
   try {
     response = await fetchSodexoData();
     let courses = Object.values(response.courses);
     for (let course of courses) {
-      if (lang) {
-        menu.push(course.title_fi);
-      } else {
-        menu.push(course.title_en);
-      }
+      menuFi.push(course.title_fi);
+      menuEn.push(course.title_en);
     }
+    menu = {'menu_fi': menuFi, 'menu_en': menuEn};
+    console.log('menu object:', menu);
     return menu;
   } catch (e) {
     console.log('sodexoMenuLoad error:', e.message);
@@ -48,9 +62,7 @@ const fetchFazerData = async (lang) => {
   let response;
   try {
     response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://foodandco.fi/modules/json/json/Index?costNumber=3134&language=${lang ?
-        'fi' :
-        'en'}`);
+      `https://cors-anywhere.herokuapp.com/https://foodandco.fi/modules/json/json/Index?costNumber=3134&language=${lang}`);
 
   } catch (e) {
     console.log('fetchFazerData error:', e.message);
@@ -58,23 +70,33 @@ const fetchFazerData = async (lang) => {
   return await response.json();
 };
 
-const fazerMenuLoad = async (lang) => {
-  let response;
-  let menu;
+const fazerMenuLoad = async () => {
+  let responseFi;
+  let responseEn;
+  let menuFi = [];
+  let menuEn = [];
+  let menuObject = {};
   try {
-    response = await fetchFazerData(lang);
-    let menus = Object.values(response.MenusForDays);
+    responseFi = await fetchFazerData('fi');
+    responseEn = await fetchFazerData('en');
+    let menus = Object.values(responseFi.MenusForDays);
     for (let day of menus) {
       if (currentDate === day.Date.slice(0, 10)) {
-        menu = day.SetMenus[0].Components;
+        menuFi = day.SetMenus[0].Components;
       }
     }
-    return menu;
+    menus = Object.values(responseEn.MenusForDays);
+    for (let day of menus) {
+      if (currentDate === day.Date.slice(0, 10)) {
+        menuEn = day.SetMenus[0].Components;
+      }
+    }
+    menuObject = {'menu_fi': menuFi, 'menu_en': menuEn};
+    console.log('fazer menuObject:', menuObject);
+    return menuObject;
   } catch (e) {
     console.log('fazerMenuLoad error:', e.message);
   }
 };
 
-const ApiData = {currentDate, fazerMenuLoad, sodexoMenuLoad};
-
-export default ApiData;
+export {fazerMenuLoad, sodexoMenuLoad, fetchJson};
