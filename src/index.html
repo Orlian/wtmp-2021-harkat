@@ -25,12 +25,14 @@
     </div>
     <div class="nav-search">
       <form class="search-form">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input class="search-input" placeholder="Hae ravintolan nimellä">
+        <button class="search-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <input class="search-input" type="text" placeholder="Hae ravintolan nimellä" autocomplete="on">
       </form>
     </div>
   </nav>
@@ -39,16 +41,7 @@
     <a href="#">Ruokalistat</a>
     <a href="#">Ravintolat</a>
     <a href="#">Yhteystiedot</a>
-    <div class="nav-search">
-      <form class="search-form">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input class="search-input" placeholder="Hae ravintolan nimellä">
-      </form>
-    </div>
+
   </div>
   <div class="banner">
     <div class="banner-text"><p id="slogan">Lounari.</p>
@@ -68,20 +61,28 @@
   </div>
   <div class="grid">
     <div class="grid-item">
-      <img class="grid-img" src="#" alt="restaurant logo">
-      <h4 class="grid-title"></h4>
-      <div class="grid-coordinate"></div>
-      <ul id="grid-menu1"></ul>
-      <button id="randomize-button1">Arvo ateria</button>
-      <p id="random-meal1"></p>
+      <img class="grid-img" src="assets/img/sodexo.jpg" alt="restaurant logo">
+      <div class="grid-item-text-wrapper">
+        <div class="grid-title-wrapper">
+          <h4 class="grid-title">Sodexo</h4>
+          <div class="grid-coordinate"></div>
+        </div>
+        <ul id="grid-menu1"></ul>
+        <button id="randomize-button1">Arvo ateria</button>
+        <p id="random-meal1"></p>
+      </div>
     </div>
     <div class="grid-item">
-      <img class="grid-img" src="#" alt="restaurant logo">
-      <h4 class="grid-title"></h4>
-      <div class="grid-coordinate"></div>
-      <ul id="grid-menu2"></ul>
-      <button id="randomize-button2">Arvo ateria</button>
-      <p id="random-meal2"></p>
+      <img class="grid-img" src="assets/img/fazer.png" alt="restaurant logo">
+      <div class="grid-item-text-wrapper">
+        <div class="grid-title-wrapper">
+          <h4 class="grid-title">Fazerina</h4>
+          <div class="grid-coordinate"></div>
+        </div>
+        <ul id="grid-menu2"></ul>
+        <button id="randomize-button2">Arvo ateria</button>
+        <p id="random-meal2"></p>
+      </div>
     </div>
   </div>
   </body>

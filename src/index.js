@@ -12,6 +12,9 @@ const menu2 = document.querySelector('#grid-menu2');
 const randomMeal2 = document.querySelector('#random-meal2');
 const navMenuButton = document.querySelector('#nav-burger-button');
 const navBurgerMenu = document.querySelector('.nav-hamburger');
+const searchButton = document.querySelector('.search-button');
+const searchInput = document.querySelector('.search-input');
+const restaurants = document.querySelectorAll('.grid-item');
 let language = 'fi';
 let sortedAsc = false;
 menu1.innerHTML = '';
@@ -91,6 +94,10 @@ const randomizeMeal = (object, language, evt) => {
   } else {
     randomMeal2.innerHTML = `${language === 'fi' ? object.menu_fi[random] : object.menu_en[random]}`;
   }
+};
+
+const searchSite = (input) => {
+
 };
 
 languageButton1.addEventListener('click', (evt) => {
