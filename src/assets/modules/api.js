@@ -14,19 +14,6 @@ if (month < 10) {
 
 currentDate = `${year}-${month}-${date}`;
 
-const fetchJson = async (url, useProxy = false) => {
-  let response;
-  try {
-    response = await fetch(`${useProxy ? proxyUrl : ''}${url}`);
-    if(!response.ok) {
-      throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
-    }
-  } catch (e) {
-    console.log('fetchJson error:', e.message);
-  }
-  return await response.json();
-};
-
 const fetchSodexoData = async () => {
   let response;
   try {
@@ -99,4 +86,4 @@ const fazerMenuLoad = async () => {
   }
 };
 
-export {fazerMenuLoad, sodexoMenuLoad, fetchJson};
+export {fazerMenuLoad, sodexoMenuLoad};

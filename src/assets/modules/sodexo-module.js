@@ -1,3 +1,4 @@
+/*
 import LunchMenu from './sodexo-day-example.json';
 
 const lunchArrayFi = [];
@@ -33,3 +34,4 @@ function randomizeMeal(languageFi) {
 const SodexoTools = {lunchArrayFi, lunchArrayEn, sortMenu, randomizeMeal, sortedAsc};
 
 export default SodexoTools;
+*/

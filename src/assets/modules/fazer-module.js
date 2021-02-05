@@ -1,4 +1,4 @@
-import MenuFi from './fazer-fin.json';
+/*import MenuFi from './fazer-fin.json';
 import MenuEn from './fazer-en.json';
 
 const getWeekday = () => {
@@ -51,4 +51,4 @@ const randomizeDish = (readyMenu) => {
 
 const FazerTools = {printMenu, randomizeDish};
 
-export default FazerTools;
+export default FazerTools;*/

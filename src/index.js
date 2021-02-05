@@ -1,10 +1,11 @@
-import {fetchJson, sodexoMenuLoad, fazerMenuLoad} from './assets/modules/api';
+import {sodexoMenuLoad, fazerMenuLoad} from './assets/modules/api';
 
 'use strict';
 
 const languageButton1 = document.querySelector('#language-button1');
 const sortButton1 = document.querySelector('#sort-button1');
 const randomButton1 = document.querySelector('#randomize-button1');
+const randomButton2 = document.querySelector('#randomize-button2');
 const menu1 = document.querySelector('#grid-menu1');
 const randomMeal1 = document.querySelector('#random-meal1');
 const menu2 = document.querySelector('#grid-menu2');
@@ -83,8 +84,13 @@ const sortMenus = (fazerObject, sodexoObject, language) => {
   }
 };
 
-const randomizeMeal = () => {
-
+const randomizeMeal = (object, language, evt) => {
+  let random = Math.floor(Math.random() * (language === 'fi' ? object.menu_fi.length : object.menu_en.length));
+  if(evt.target === randomButton1) {
+    randomMeal1.innerHTML = `${language === 'fi' ? object.menu_fi[random] : object.menu_en[random]}`;
+  } else {
+    randomMeal2.innerHTML = `${language === 'fi' ? object.menu_fi[random] : object.menu_en[random]}`;
+  }
 };
 
 languageButton1.addEventListener('click', (evt) => {
@@ -111,6 +117,12 @@ sortButton1.addEventListener('click', (evt) => {
 
 randomButton1.addEventListener('click', (evt) => {
   evt.preventDefault();
+  randomizeMeal(sodexoMenu, language, evt);
+});
+
+randomButton2.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  randomizeMeal(fazerMenu, language, evt);
 });
 
 /*
