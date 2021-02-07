@@ -1,80 +1,50 @@
-:root {
-  --greenAccent: #43E04F;
-  --greenHover: #1d6422;
-  --redAccent: #AC1149;
-  --redHover: #3b0000;
+.nav {
+  flex-direction: column;
 }
 
-@font-face {
-  font-family: Lato-Black;
-  src: url("./fonts/Lato-Black.ttf");
+#nav-burger-button-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-@font-face {
-  font-family: Lato-Bold;
-  src: url("./fonts/Lato-Bold.ttf");
+#nav-burger-button {
+  display: block;
+  outline: none;
+  border: none;
+  background: none;
+  height: 95%;
+  margin-left: 1em;
 }
 
-@font-face {
-  font-family: Lato-Regular;
-  src: url("./fonts/Lato-Regular.ttf");
-}
-
-@font-face {
-  font-family: RobotoSlab-ExtraBold;
-  src: url("./fonts/RobotoSlab-ExtraBold.ttf");
-}
-
-@font-face {
-  font-family: RobotoSlab-Regular;
-  src: url("./fonts/RobotoSlab-Regular.ttf");
-}
-
-.nav-links {
-  display: none;
-}
-
-.nav-search {
-  display: none;
-}
-
-.nav-hamburger {
-  display: none;
+.nav-data-wrapper {
   position: absolute;
-  top: 2.4em;
+  top: 2.5em;
   width: 100vw;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: var(--greenAccent);
+  background-color: var(--mainColour);
+  border: var(--mainHover) 2px solid;
   z-index: 2;
   font-family: Lato-Bold, sans-serif;
 }
 
-.nav-hamburger a {
-  margin: 0.5em 0;
-  text-decoration: none;
-  color: var(--redAccent);
+.nav-links {
+  flex-direction: column;
 }
 
-.nav-hamburger a:hover {
-  color: var(--redHover);
+.nav-links a {
+  padding: 1em 2em;
+  color: white;
 }
 
-.nav-hamburger .nav-search {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 1.2em;
-  justify-content: center;
-}
-
-.nav-hamburger .search-form {
-  width: 40%;
-}
-
-.nav-hamburger .search-input {
-  text-align: center;
+.nav-links a:hover {
+  background-color: var(--mainHover);
+  color: white;
 }
 
 #nav-burger-button {
@@ -88,13 +58,22 @@
 
 .feather-menu {
   display: block;
-  width: 100%;
-  height: 100%;
-  color: var(--redAccent);
+  color: var(--accent);
 }
 
 .feather-menu:hover {
-  color: var(--redHover);
+  color: var(--accentHover);
+}
+
+.nav-search {
+  padding: 0;
+  width: 50%;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.search-input {
+  text-align: center;
 }
 
 .banner {
@@ -148,6 +127,8 @@
 }
 
 @keyframes toggleMenu {
-  from {}
-  to {}
+  from {
+  }
+  to {
+  }
 }

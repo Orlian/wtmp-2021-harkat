@@ -11,7 +11,7 @@ const randomMeal1 = document.querySelector('#random-meal1');
 const menu2 = document.querySelector('#grid-menu2');
 const randomMeal2 = document.querySelector('#random-meal2');
 const navMenuButton = document.querySelector('#nav-burger-button');
-const navBurgerMenu = document.querySelector('.nav-hamburger');
+const navBurgerMenu = document.querySelector('.nav-data-wrapper');
 const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const restaurants = document.querySelectorAll('.grid-item');
@@ -148,9 +148,29 @@ if ('serviceWorker' in navigator) {
 
 navMenuButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  if (navBurgerMenu.style.display !== 'flex') {
-    navBurgerMenu.style.display = 'flex';
+  if (navBurgerMenu.classList.contains('hidden')) {
+    navBurgerMenu.classList.toggle('hidden');
   } else {
-    navBurgerMenu.style.display = 'none';
+    navBurgerMenu.classList.toggle('hidden');
   }
+});
+
+window.addEventListener('resize', (evt) => {
+  evt.preventDefault();
+  if(window.innerWidth < 800) {
+    navBurgerMenu.classList.add('hidden');
+  } else {
+    navBurgerMenu.classList.remove('hidden');
+  }
+});
+
+searchButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  restaurants.forEach((restaurant) => {
+    if(!restaurant.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      restaurant.classList.add('hidden');
+    } else {
+      restaurant.classList.remove('hidden');
+    }
+  });
 });

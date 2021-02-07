@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="assets/mobile-styles.css" media="screen and (max-width: 799px)">
-  </head>
-  <body>
-  <nav>
+<head>
+  <meta charset="utf-8"/>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/mobile-styles.css" media="screen and (max-width: 799px)">
+</head>
+<body>
+<nav>
+  <div id="nav-burger-button-wrapper">
     <button id="nav-burger-button">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor"
            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
     </button>
+    <div class="nav-mobile-title"></div>
+  </div>
+  <div class="nav-data-wrapper">
     <div class="nav-links">
       <a href="#">Etusivu</a>
       <a href="#">Ruokalistat</a>
@@ -26,64 +31,60 @@
     <div class="nav-search">
       <form class="search-form">
         <button class="search-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor"
                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
         </button>
-        <input class="search-input" type="text" placeholder="Hae ravintolan nimellä" autocomplete="on">
+        <label><input class="search-input" placeholder="Hae ravintolan nimellä..."></label>
       </form>
     </div>
-  </nav>
-  <div class="nav-hamburger">
-    <a href="#">Etusivu</a>
-    <a href="#">Ruokalistat</a>
-    <a href="#">Ravintolat</a>
-    <a href="#">Yhteystiedot</a>
-
   </div>
-  <div class="banner">
-    <div class="banner-text"><p id="slogan">Lounari.</p>
-      <p>Missä tänään syötäisiin</p></div>
-    <div class="banner-image">
-      <div id="triangle"></div>
-    </div>
+</nav>
+<div class="banner">
+  <div class="banner-text"><p id="slogan">Lounari.</p>
+    <p>Missä tänään syötäisiin</p></div>
+  <div class="banner-image">
+    <div id="triangle"></div>
   </div>
-  <div class="description-wrapper">
-    <p class="description">Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä. Palvelu etsii lähelläsi olevat lounaspaikat, sekä
-      näyttää niiden päivittäisen lounaslistan. Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset
-      niihin klikkaamalla ravintolan logoa alla.</p>
-  </div>
-  <div class="option-button-wrapper">
-    <button id="language-button1">Fi/En</button>
-    <button id="sort-button1">asc/desc</button>
-  </div>
-  <div class="grid">
-    <div class="grid-item">
-      <img class="grid-img" src="assets/img/sodexo.jpg" alt="restaurant logo">
-      <div class="grid-item-text-wrapper">
-        <div class="grid-title-wrapper">
-          <h4 class="grid-title">Sodexo</h4>
-          <div class="grid-coordinate"></div>
-        </div>
-        <ul id="grid-menu1"></ul>
-        <button id="randomize-button1">Arvo ateria</button>
-        <p id="random-meal1"></p>
+</div>
+<div class="description-wrapper">
+  <p class="description">Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä. Palvelu etsii lähelläsi olevat
+    lounaspaikat, sekä
+    näyttää niiden päivittäisen lounaslistan. Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset
+    niihin klikkaamalla ravintolan logoa alla.</p>
+</div>
+<div class="option-button-wrapper">
+  <button id="language-button1">Fi/En</button>
+  <button id="sort-button1">asc/desc</button>
+</div>
+<div class="grid">
+  <div class="grid-item">
+    <img class="grid-img" src="assets/img/sodexo.jpg" alt="restaurant logo">
+    <div class="grid-item-text-wrapper">
+      <div class="grid-title-wrapper">
+        <h4 class="grid-title">Sodexo</h4>
+        <div class="grid-coordinate"></div>
       </div>
-    </div>
-    <div class="grid-item">
-      <img class="grid-img" src="assets/img/fazer.png" alt="restaurant logo">
-      <div class="grid-item-text-wrapper">
-        <div class="grid-title-wrapper">
-          <h4 class="grid-title">Fazerina</h4>
-          <div class="grid-coordinate"></div>
-        </div>
-        <ul id="grid-menu2"></ul>
-        <button id="randomize-button2">Arvo ateria</button>
-        <p id="random-meal2"></p>
-      </div>
+      <ul id="grid-menu1"></ul>
+      <button id="randomize-button1">Arvo ateria</button>
+      <p id="random-meal1"></p>
     </div>
   </div>
-  </body>
+  <div class="grid-item">
+    <img class="grid-img" src="assets/img/fazer.png" alt="restaurant logo">
+    <div class="grid-item-text-wrapper">
+      <div class="grid-title-wrapper">
+        <h4 class="grid-title">Fazerina</h4>
+        <div class="grid-coordinate"></div>
+      </div>
+      <ul id="grid-menu2"></ul>
+      <button id="randomize-button2">Arvo ateria</button>
+      <p id="random-meal2"></p>
+    </div>
+  </div>
+</div>
+</body>
 </html>
