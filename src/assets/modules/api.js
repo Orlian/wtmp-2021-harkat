@@ -1,4 +1,6 @@
 'use strict';
+import {fazerProxyUrl, sodexoProxyUrl} from '../../settings';
+
 let currentDate = new Date();
 let year = currentDate.getFullYear();
 let month = currentDate.getMonth() + 1;
@@ -18,7 +20,7 @@ const fetchSodexoData = async () => {
   let response;
   try {
     response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://sodexo.fi/ruokalistat/output/daily_json/152/${currentDate}`);
+      `${sodexoProxyUrl}/ruokalistat/output/daily_json/152/${currentDate}`);
   } catch (e) {
     console.log('fetchSodexoData error:', e.message);
   }
@@ -49,7 +51,7 @@ const fetchFazerData = async (lang) => {
   let response;
   try {
     response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://foodandco.fi/modules/json/json/Index?costNumber=3134&language=${lang}`);
+      `${fazerProxyUrl}/modules/json/json/Index?costNumber=3134&language=${lang.toString()}`);
 
   } catch (e) {
     console.log('fetchFazerData error:', e.message);

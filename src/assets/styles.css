@@ -253,6 +253,39 @@ ul {
   height: 100%;
 }
 
+.add-restaurant {
+  display: flex;
+  width: 40%;
+  margin-right: 46.5%;
+  height: auto;
+  border: lightgrey 2px dashed;
+  border-radius: 10px;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.add-button {
+  display: flex;
+  outline: none;
+  border: none;
+  background: none;
+  align-items: center;
+  height: 100%;
+}
+
+#add-text {
+  color: #646464;
+}
+
+.feather-plus-circle {
+  color: var(--mainColour);
+}
+
+.feather-plus-circle:hover {
+  color: var(--mainHover);
+}
+
 #triangle {
   position: relative;
   width: 0;
