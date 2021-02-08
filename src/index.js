@@ -2,6 +2,7 @@ import {sodexoMenuLoad, fazerMenuLoad} from './assets/modules/api';
 
 'use strict';
 
+const root = document.documentElement;
 const languageButton1 = document.querySelector('#language-button1');
 const sortButton1 = document.querySelector('#sort-button1');
 const randomButton1 = document.querySelector('#randomize-button1');
@@ -15,12 +16,62 @@ const navBurgerMenu = document.querySelector('.nav-data-wrapper');
 const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const restaurants = document.querySelectorAll('.grid-item');
+const themeButton = document.querySelector('#theme-button');
 let language = 'fi';
 let sortedAsc = false;
 menu1.innerHTML = '';
 menu2.innerHTML = '';
+let theme = 'light';
 let fazerMenu = {};
 let sodexoMenu = {};
+
+if(!localStorage.getItem('theme')) {
+  localStorage.setItem('theme', theme);
+}
+
+if(localStorage.getItem('theme') === 'light'){
+  themeButton.textContent = 'Go dark';
+} else {
+  theme = localStorage.getItem('theme');
+  themeButton.textContent= 'Go bright';
+}
+
+const changeTheme = () => {
+  if(theme === 'light') {
+    theme = 'dark';
+    localStorage.setItem('theme', theme);
+    themeButton.textContent= 'Go bright';
+    root.style.setProperty('--bodyColour', '#141414');
+    root.style.setProperty('--basicText', 'white');
+    root.style.setProperty('--cardColour', '#3e3e3e');
+    root.style.setProperty('--borderColour', 'white');
+
+  } else {
+    theme = 'light';
+    localStorage.setItem('theme', theme);
+    themeButton.textContent = 'Go dark';
+    root.style.setProperty('--bodyColour', 'white');
+    root.style.setProperty('--basicText', 'black');
+    root.style.setProperty('--cardColour', '#e2e2e2');
+    root.style.setProperty('--borderColour', 'black');
+  }
+};
+
+const loadTheme = () => {
+  if(localStorage.getItem('theme') === 'dark') {
+    root.style.setProperty('--bodyColour', '#141414');
+    root.style.setProperty('--basicText', 'white');
+    root.style.setProperty('--cardColour', '#3e3e3e');
+    root.style.setProperty('--borderColour', 'white');
+  } else {
+    root.style.setProperty('--bodyColour', 'white');
+    root.style.setProperty('--basicText', 'black');
+    root.style.setProperty('--cardColour', '#e2e2e2');
+    root.style.setProperty('--borderColour', 'black');
+  }
+};
+
+window.onload = (loadTheme);
 
 const initMenus = async () => {
   try {
@@ -173,4 +224,9 @@ searchButton.addEventListener('click', (evt) => {
       restaurant.classList.remove('hidden');
     }
   });
+});
+
+themeButton.addEventListener('click',  (evt) => {
+  evt.preventDefault();
+  changeTheme();
 });

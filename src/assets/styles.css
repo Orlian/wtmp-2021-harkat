@@ -7,6 +7,12 @@
   --mainHover: #4e0754;
   --accent: #9D343A;
   --accentHover: #532628;
+  --cardColour: #e2e2e2;
+  --buttonColour: #404040;
+  --basicText: white;
+  --hoverText: white;
+  --bodyColour: white;
+  --borderColour: black;
 }
 
 @font-face {
@@ -32,6 +38,10 @@
 @font-face {
   font-family: RobotoSlab-Regular;
   src: url("./fonts/RobotoSlab-Regular.ttf");
+}
+
+body {
+  background-color: var(--bodyColour);
 }
 
 nav {
@@ -68,7 +78,7 @@ nav {
 .nav-links a:hover {
   border: var(--accentHover);
   background-color: var(--accentHover);
-  color: white;
+  color: var(--hoverText);
   border-radius: 5px;
 }
 
@@ -167,6 +177,7 @@ nav {
   width: 36em;
   font-size: 20px;
   line-height: 1.4em;
+  color: var(--basicText);
   font-family: Lato-Regular, sans-serif;
 }
 
@@ -193,11 +204,12 @@ nav {
   display: flex;
   width: 40%;
   height: auto;
-  border: black 2px outset;
+  border: var(--borderColour) 2px outset;
   border-radius: 5px;
   padding: 1em;
   margin-bottom: 2em;
-  background-color: #e2e2e2;
+  color: var(--basicText);
+  background-color: var(--cardColour);
 }
 
 .grid-img {
@@ -210,6 +222,7 @@ nav {
   display: flex;
   width: 100%;
   flex-direction: column;
+  align-items: center;
 }
 
 .grid-title-wrapper {
@@ -251,6 +264,13 @@ ul {
   background: none;
   align-items: center;
   height: 100%;
+}
+
+button {
+  background-color: var(--buttonColour);
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
 }
 
 #triangle {
