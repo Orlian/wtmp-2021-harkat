@@ -1,4 +1,5 @@
 import {sodexoMenuLoad, fazerMenuLoad} from './assets/modules/api';
+import {Swappable} from '@shopify/draggable';
 
 'use strict';
 
@@ -230,3 +231,11 @@ themeButton.addEventListener('click',  (evt) => {
   evt.preventDefault();
   changeTheme();
 });
+
+const swappable = new Swappable(document.querySelectorAll('.grid'), {
+  draggable: '.grid-item'
+});
+
+swappable.on('swappable:start', () => console.log('swappable:start'));
+swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
+swappable.on('swappable:stop', () => console.log('swappable:stop'));

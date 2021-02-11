@@ -18,7 +18,7 @@ const fetchSodexoData = async () => {
   let response;
   try {
     response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://sodexo.fi/ruokalistat/output/daily_json/152/${currentDate}`);
+      `https://users.metropolia.fi/~joonasdl/sodexo.php/ruokalistat/output/daily_json/152/${currentDate}`);
   } catch (e) {
     console.log('fetchSodexoData error:', e.message);
   }
@@ -49,7 +49,7 @@ const fetchFazerData = async (lang) => {
   let response;
   try {
     response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://foodandco.fi/modules/json/json/Index?costNumber=3134&language=${lang}`);
+      `https://users.metropolia.fi/~joonasdl/fazer.php/modules/json/json/Index?costNumber=3134&language=${lang}`);
 
   } catch (e) {
     console.log('fetchFazerData error:', e.message);
