@@ -67,7 +67,7 @@
       <img class="grid-img" src="assets/img/sodexo.jpg" alt="restaurant logo">
       <div class="grid-item-text-wrapper">
         <div class="grid-title-wrapper">
-          <h4 class="grid-title">Sodexo</h4>
+          <h4 class="grid-title">Sodexo Leiritie</h4>
           <div class="grid-coordinate"></div>
         </div>
         <ul id="grid-menu1"></ul>
@@ -79,13 +79,30 @@
       <img class="grid-img" src="assets/img/fazer.png" alt="restaurant logo">
       <div class="grid-item-text-wrapper">
         <div class="grid-title-wrapper">
-          <h4 class="grid-title">Fazerina</h4>
+          <h4 class="grid-title">Fazer Pääposti</h4>
           <div class="grid-coordinate"></div>
         </div>
         <ul id="grid-menu2"></ul>
         <button id="randomize-button2">Arvo ateria</button>
         <p id="random-meal2"></p>
       </div>
+    </div>
+    <div class="add-restaurant">
+      <button class="add-button" aria-label="add-restaurant-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-plus-circle">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+      </button>
+      <label id="add-text" for="restaurants">Lisää ravintola...</label>
+
+      <select name="restaurants" id="restaurants">
+        <option value="myllypuro">Sodexo Myllypuro</option>
+        <option value="alma-media">Fazer Alma Media</option>
+      </select>
     </div>
   </div>
 </div>

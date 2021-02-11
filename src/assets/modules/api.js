@@ -45,11 +45,11 @@ const sodexoMenuLoad = async () => {
   }
 };
 
-const fetchFazerData = async (lang) => {
+const fetchFazerData = async (lang, id) => {
   let response;
   try {
     response = await fetch(
-      `https://users.metropolia.fi/~joonasdl/fazer.php/modules/json/json/Index?costNumber=3134&language=${lang}`);
+      `https://users.metropolia.fi/~joonasdl/fazer.php/modules/json/json/Index?costNumber=${id}&language=${lang}`);
 
   } catch (e) {
     console.log('fetchFazerData error:', e.message);
@@ -57,15 +57,15 @@ const fetchFazerData = async (lang) => {
   return await response.json();
 };
 
-const fazerMenuLoad = async () => {
+const fazerMenuLoad = async (id) => {
   let responseFi;
   let responseEn;
   let menuFi = [];
   let menuEn = [];
   let menuObject = {};
   try {
-    responseFi = await fetchFazerData('fi');
-    responseEn = await fetchFazerData('en');
+    responseFi = await fetchFazerData('fi', id);
+    responseEn = await fetchFazerData('en', id);
     let menus = Object.values(responseFi.MenusForDays);
     for (let day of menus) {
       if (currentDate === day.Date.slice(0, 10)) {

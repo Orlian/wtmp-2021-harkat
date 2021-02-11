@@ -18,6 +18,9 @@ const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const restaurants = document.querySelectorAll('.grid-item');
 const themeButton = document.querySelector('#theme-button');
+const addRestaurantList = document.querySelector('#restaurants');
+const addRestaurantButton = document.querySelector('.add-button');
+const grid = document.querySelector('.grid');
 let language = 'fi';
 let sortedAsc = false;
 menu1.innerHTML = '';
@@ -26,22 +29,22 @@ let theme = 'light';
 let fazerMenu = {};
 let sodexoMenu = {};
 
-if(!localStorage.getItem('theme')) {
+if (!localStorage.getItem('theme')) {
   localStorage.setItem('theme', theme);
 }
 
-if(localStorage.getItem('theme') === 'light'){
+if (localStorage.getItem('theme') === 'light') {
   themeButton.textContent = 'Go dark';
 } else {
   theme = localStorage.getItem('theme');
-  themeButton.textContent= 'Go bright';
+  themeButton.textContent = 'Go bright';
 }
 
 const changeTheme = () => {
-  if(theme === 'light') {
+  if (theme === 'light') {
     theme = 'dark';
     localStorage.setItem('theme', theme);
-    themeButton.textContent= 'Go bright';
+    themeButton.textContent = 'Go bright';
     root.style.setProperty('--bodyColour', '#141414');
     root.style.setProperty('--basicText', 'white');
     root.style.setProperty('--cardColour', '#3e3e3e');
@@ -59,7 +62,7 @@ const changeTheme = () => {
 };
 
 const loadTheme = () => {
-  if(localStorage.getItem('theme') === 'dark') {
+  if (localStorage.getItem('theme') === 'dark') {
     root.style.setProperty('--bodyColour', '#141414');
     root.style.setProperty('--basicText', 'white');
     root.style.setProperty('--cardColour', '#3e3e3e');
@@ -77,7 +80,7 @@ window.onload = (loadTheme);
 const initMenus = async () => {
   try {
     sodexoMenu = await sodexoMenuLoad();
-    fazerMenu = await fazerMenuLoad();
+    fazerMenu = await fazerMenuLoad(3134);
     await printSodexoMenu(sodexoMenu, language);
     await printFazerMenu(fazerMenu, language);
   } catch (e) {
@@ -140,11 +143,16 @@ const sortMenus = (fazerObject, sodexoObject, language) => {
 };
 
 const randomizeMeal = (object, language, evt) => {
-  let random = Math.floor(Math.random() * (language === 'fi' ? object.menu_fi.length : object.menu_en.length));
-  if(evt.target === randomButton1) {
-    randomMeal1.innerHTML = `${language === 'fi' ? object.menu_fi[random] : object.menu_en[random]}`;
+  let random = Math.floor(Math.random() *
+    (language === 'fi' ? object.menu_fi.length : object.menu_en.length));
+  if (evt.target === randomButton1) {
+    randomMeal1.innerHTML = `${language === 'fi' ?
+      object.menu_fi[random] :
+      object.menu_en[random]}`;
   } else {
-    randomMeal2.innerHTML = `${language === 'fi' ? object.menu_fi[random] : object.menu_en[random]}`;
+    randomMeal2.innerHTML = `${language === 'fi' ?
+      object.menu_fi[random] :
+      object.menu_en[random]}`;
   }
 };
 
@@ -209,7 +217,7 @@ navMenuButton.addEventListener('click', (evt) => {
 
 window.addEventListener('resize', (evt) => {
   evt.preventDefault();
-  if(window.innerWidth < 800) {
+  if (window.innerWidth < 800) {
     navBurgerMenu.classList.add('hidden');
   } else {
     navBurgerMenu.classList.remove('hidden');
@@ -219,7 +227,8 @@ window.addEventListener('resize', (evt) => {
 searchButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   restaurants.forEach((restaurant) => {
-    if(!restaurant.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+    if (!restaurant.textContent.toLowerCase().
+      includes(searchInput.value.toLowerCase())) {
       restaurant.classList.add('hidden');
     } else {
       restaurant.classList.remove('hidden');
@@ -227,15 +236,34 @@ searchButton.addEventListener('click', (evt) => {
   });
 });
 
-themeButton.addEventListener('click',  (evt) => {
+themeButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   changeTheme();
 });
 
 const swappable = new Swappable(document.querySelectorAll('.grid'), {
-  draggable: '.grid-item'
+  draggable: '.grid-item',
 });
 
-swappable.on('swappable:start', () => console.log('swappable:start'));
-swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-swappable.on('swappable:stop', () => console.log('swappable:stop'));
+addRestaurantButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  const gridItem = document.createElement('div');
+  gridItem.classList.add('grid-item');
+  const gridImage = document.createElement('img');
+  gridImage.classList.add('grid-img');
+  gridImage.alt = 'restaurant logo';
+  gridImage.src = (addRestaurantList.value === 'myllypuro' ?
+    'assets/img/fazer.png' :
+    'assets/img/sodexo.jpg');
+  gridItem.append(gridImage);
+  const gridItemTextWrapper = document.createElement('div');
+  gridItemTextWrapper.classList.add('grid-item-text-wrapper');
+  const gridTitleWrapper = document.createElement('div');
+  gridTitleWrapper.classList.add('grid-title-wrapper');
+  const gridTitle = document.createElement('h4');
+  gridTitle.classList.add('grid-title');
+});
+
+// swappable.on('swappable:start', () => console.log('swappable:start'));
+// swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
+// swappable.on('swappable:stop', () => console.log('swappable:stop'));
